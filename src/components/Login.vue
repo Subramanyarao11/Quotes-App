@@ -142,7 +142,9 @@ export default {
           let res = await axios.post("http://localhost:5000/user/login", ustate);
           if (res.status !== 401) {
             store.dispatch("storeToken", res.data.token);
-            router.push("/home");
+            if(res.data.token) {
+              router.push("/home");
+            }
           }
         } catch (e) {
             console.log(e)
